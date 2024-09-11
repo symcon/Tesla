@@ -1,0 +1,33 @@
+{
+    "actions": [
+        {
+            "type": "Configurator",
+            "name": "Configurator",
+            "discoveryInterval": 300,
+            "caption": "Vehicles",
+            "delete": false,
+            "columns": [
+                {
+                    "label": "Site Name",
+                    "name": "site_name",
+                    "width": "auto"
+                },
+                {
+                    "label": "Energy Site ID",
+                    "name": "energy_site_id",
+                    "width": "350px"
+                },
+                {
+                    "caption": "Components",
+                    "name": "components",
+                    "width": "450px"
+                }
+            ],
+            "sort": {
+                "column": "site_name",
+                "direction": "ascending"
+            },
+            "values": []
+        }
+    ]
+}

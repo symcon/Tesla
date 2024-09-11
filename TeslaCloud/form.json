@@ -1,0 +1,13 @@
+{
+    "elements": [
+        {
+            "type": "Button",
+            "label": "Register",
+            "onClick": "echo TESLA_Register($id);"
+        },
+        {
+            "type": "Label",
+            "name": "Token"
+        }
+    ]
+}

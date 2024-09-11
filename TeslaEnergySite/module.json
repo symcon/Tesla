@@ -1,0 +1,18 @@
+{
+    "id": "{4A06DAB6-0035-498A-C905-C3AD5C8644CB}",
+    "name": "Tesla Energy Site",
+    "type": 3,
+    "vendor": "Tesla",
+    "aliases": [
+        "Tesla Energy Site"
+    ],
+    "parentRequirements": [
+        "{FB4ED52F-A162-6F23-E7EA-2CBAAF48E662}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{F0FB088E-59B9-2E9B-3449-58DB508412B0}"
+    ],
+    "url": "https://www.symcon.de/en/service/documentation/module-reference/tesla/",
+    "prefix": "TESLA"
+}

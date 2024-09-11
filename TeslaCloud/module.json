@@ -1,0 +1,18 @@
+{
+    "id": "{D5994951-CD92-78B7-A059-3D423FCB599A}",
+    "name": "Tesla Cloud",
+    "type": 2,
+    "vendor": "Tesla",
+    "aliases": [
+        "Tesla Cloud"
+    ],
+    "parentRequirements": [],
+    "childRequirements": [
+        "{F0FB088E-59B9-2E9B-3449-58DB508412B0}"
+    ],
+    "implemented": [
+        "{FB4ED52F-A162-6F23-E7EA-2CBAAF48E662}"
+    ],
+    "url": "https://www.symcon.de/en/service/documentation/module-reference/tesla/",
+    "prefix": "TESLA"
+}

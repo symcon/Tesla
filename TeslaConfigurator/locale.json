@@ -1,0 +1,13 @@
+{
+    "translations": {
+        "de": {
+            "Vehicle": "Fahrzeug",
+            "VIN": "VIN",
+            "Display Name": "Anzeigename",
+            "Access Type": "Zugriffstyp",
+            "Configurator": "Konfigurator",
+            "Tesla Configurator": "Tesla Konfigurator",
+            "https://www.symcon.de/en/service/documentation/module-reference/tesla/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla/"
+        }
+    }
+}

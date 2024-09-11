@@ -1,0 +1,16 @@
+{
+    "elements": [
+        {
+            "type": "ValidationTextBox",
+            "name": "ESID",
+            "caption": "Energy Site ID"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Button",
+            "caption": "Test",
+            "onClick": "TESLA_Test($id);"
+        }
+    ]
+}
