@@ -4,7 +4,7 @@
             "type": "Configurator",
             "name": "Configurator",
             "discoveryInterval": 300,
-            "caption": "Vehicles",
+            "caption": "Storage",
             "delete": false,
             "columns": [
                 {

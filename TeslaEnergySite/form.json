@@ -10,7 +10,7 @@
         {
             "type": "Button",
             "caption": "Test",
-            "onClick": "TESLA_Test($id);"
+            "onClick": "TESLA_UpdateValues($id);"
         }
     ]
 }

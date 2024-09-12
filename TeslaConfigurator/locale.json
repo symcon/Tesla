@@ -1,13 +1,17 @@
 {
     "translations": {
         "de": {
-            "Vehicle": "Fahrzeug",
-            "VIN": "VIN",
+            "Storage": "Speicher",
             "Display Name": "Anzeigename",
-            "Access Type": "Zugriffstyp",
             "Configurator": "Konfigurator",
             "Tesla Configurator": "Tesla Konfigurator",
-            "https://www.symcon.de/en/service/documentation/module-reference/tesla/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla/"
+            "https://www.symcon.de/en/service/documentation/module-reference/tesla/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla/",
+            "components": "Komponenten",
+            "Battery": "Batterie",
+            "Solar": "Solar",
+            "Grid": "Netz",
+            "Load Meter": "Lastmesser",
+            "None": "Keine"
         }
     }
 }

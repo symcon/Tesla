@@ -23,15 +23,14 @@ class TeslaConfigurator extends IPSModuleStrict
                 'Payload'  => ''
             ])))->response;
 
-            /*
+
             $physicalChildren = $this->getPhysicalChildren();
-            */
 
             foreach ($products as $product) {
                 $this->SendDebug('Products', json_encode($product), 0);
 
-                $instanceID = 0; //$this->searchDevice($vehicle->vin);
-                //$physicalChildren = array_diff($physicalChildren, [$instanceID]);
+                $instanceID = $this->searchDevice($product->energy_site_id);
+                $physicalChildren = array_diff($physicalChildren, [$instanceID]);
 
                 $components = [];
                 if ($product->components->battery) {
@@ -49,8 +48,7 @@ class TeslaConfigurator extends IPSModuleStrict
 
                 if (empty($components)) {
                     $components = $this->Translate("None");
-                }
-                else {
+                } else {
                     $components = implode(", ", $components);
                 }
 
@@ -61,6 +59,7 @@ class TeslaConfigurator extends IPSModuleStrict
                     'instanceID'        => $instanceID,
                     'create'            => [
                         'moduleID'      => '{4A06DAB6-0035-498A-C905-C3AD5C8644CB}',
+                        'name' => $product->site_name,
                         'configuration' => [
                             'ESID' => $product->energy_site_id
                         ]
@@ -68,17 +67,15 @@ class TeslaConfigurator extends IPSModuleStrict
                 ];
             }
 
-            /*
+
             foreach ($physicalChildren as $instanceID) {
                 $data->actions[0]->values[] = [
-                    'systemId'     => IPS_GetProperty($instanceID, 'SystemId'),
-                    'systemName'   => '',
-                    'name'         => IPS_GetName($instanceID),
-                    'info'         => '',
-                    'instanceID'   => $instanceID,
+                    'energy_site_id' => IPS_GetProperty($instanceID, 'ESID'),
+                    'site_name'      => IPS_GetName($instanceID),
+                    'info'           => '',
+                    'instanceID'     => $instanceID,
                 ];
             }
-            */
         }
 
         return json_encode($data);
@@ -87,7 +84,7 @@ class TeslaConfigurator extends IPSModuleStrict
     private function getPhysicalChildren(): array
     {
         $connectionID = IPS_GetInstance($this->InstanceID);
-        $ids = IPS_GetInstanceListByModuleID('{81DE9D16-04F1-DE04-AC2D-77096E0A405A}');
+        $ids = IPS_GetInstanceListByModuleID('{4A06DAB6-0035-498A-C905-C3AD5C8644CB}');
         $result = [];
         foreach ($ids as $id) {
             $i = IPS_GetInstance($id);
@@ -97,14 +94,14 @@ class TeslaConfigurator extends IPSModuleStrict
         }
         return $result;
     }
-    private function searchDevice($systemId): int
+    private function searchDevice($energySiteID): int
     {
         $connectionID = IPS_GetInstance($this->InstanceID);
-        $ids = IPS_GetInstanceListByModuleID('{81DE9D16-04F1-DE04-AC2D-77096E0A405A}');
+        $ids = IPS_GetInstanceListByModuleID('{4A06DAB6-0035-498A-C905-C3AD5C8644CB}');
         foreach ($ids as $id) {
             $i = IPS_GetInstance($id);
             if ($i['ConnectionID'] == $connectionID['ConnectionID']) {
-                if (IPS_GetProperty($id, 'SystemId') == $systemId) {
+                if (IPS_GetProperty($id, 'ESID') == $energySiteID) {
                     return $id;
                 }
             }
