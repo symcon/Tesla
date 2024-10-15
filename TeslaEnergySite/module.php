@@ -18,6 +18,7 @@ class TeslaEnergySite extends IPSModuleStrict
         parent::Create();
 
         $this->RegisterPropertyString('ESID', '');
+        $this->RegisterPropertyInteger('UpdateInterval', 6);
 
         //Connect to available splitter or create a new one
         $this->ConnectParent('{D5994951-CD92-78B7-A059-3D423FCB599A}');
@@ -38,7 +39,7 @@ class TeslaEnergySite extends IPSModuleStrict
         //Never delete this line!
         parent::ApplyChanges();
 
-        $this->SetTimerInterval('UpdateDuration', 1000 * 60 * 60 * 6);
+        $this->SetTimerInterval('UpdateDuration', 1000 * 60 * $this->ReadPropertyInteger('UpdateInterval'));
 
         $this->UpdateValues();
     }

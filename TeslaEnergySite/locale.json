@@ -1,7 +1,10 @@
 {
     "translations": {
         "de": {
-            "https://www.symcon.de/en/service/documentation/module-reference/tesla/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla/"
+            "https://www.symcon.de/en/service/documentation/module-reference/tesla/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla/",
+            "Update Values": "Werte Aktualisieren",
+            "Update Interval": "Aktualisierungsintervall",
+            "Minutes": "Minuten"
         }
     }
 }

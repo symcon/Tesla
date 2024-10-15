@@ -4,12 +4,18 @@
             "type": "ValidationTextBox",
             "name": "ESID",
             "caption": "Energy Site ID"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "UpdateInterval",
+            "caption": "Update Interval",
+            "suffix": "Minutes"
         }
     ],
     "actions": [
         {
             "type": "Button",
-            "caption": "Test",
+            "caption": "Update Values",
             "onClick": "TESLA_UpdateValues($id);"
         }
     ]
