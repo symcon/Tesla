@@ -41,7 +41,9 @@ class TeslaEnergySite extends IPSModuleStrict
 
         $this->SetTimerInterval('UpdateDuration', 1000 * 60 * $this->ReadPropertyInteger('UpdateInterval'));
 
-        $this->UpdateValues();
+        if ($this->HasActiveParent()) {
+            $this->UpdateValues();
+        }
     }
 
 
