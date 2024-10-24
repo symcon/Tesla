@@ -9,7 +9,7 @@ class TeslaConfigurator extends IPSModuleStrict
         parent::Create();
 
         //Connect to available splitter or create a new one
-        $this->ConnectParent('{D5994951-CD92-78B7-A059-3D423FCB599A}');
+        $this->ConnectParent('{79EE0412-8C96-09A7-4D33-FE0EDF753562}');
     }
 
     public function GetConfigurationForm(): string
