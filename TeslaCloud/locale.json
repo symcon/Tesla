@@ -4,7 +4,8 @@
             "Register": "Registrieren",
             "Token": "Token",
             "Token: Not registered yet": "Token: Noch nicht registriert",
-            "https://www.symcon.de/en/service/documentation/module-reference/tesla/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla/"
+            "https://www.symcon.de/en/service/documentation/module-reference/tesla/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla/",
+            "Please register a new app with Tesla to get a ClientID/ClientSecret!": "Bitte registrieren Sie eine neue Anwendung bei Tesla, um eine ClientID/ClientSecret zu erhalten!"
         }
     }
 }
