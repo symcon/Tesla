@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 class TeslaCloud extends IPSModuleStrict
 {
-    private $oauthIdentifier = 'tesla';
+    private $oauthIdentifer = 'tesla';
     private $oauthServer = 'oauth.ipmagic.de';
 
     public function Create(): void
@@ -12,12 +12,9 @@ class TeslaCloud extends IPSModuleStrict
         //Never delete this line!
         parent::Create();
 
-        $this->RegisterPropertyString('ClientID', '');
-        $this->RegisterPropertyString('ClientSecret', '');
-
         $this->RegisterAttributeString('Token', '');
 
-        $this->RegisterOAuth($this->oauthIdentifier);
+        $this->RegisterOAuth($this->oauthIdentifer);
 
     }
 
@@ -48,7 +45,7 @@ class TeslaCloud extends IPSModuleStrict
     public function GetConfigurationForm(): string
     {
         $data = json_decode(file_get_contents(__DIR__ . '/form.json'));
-        $data->actions[1]->caption = $this->ReadAttributeString('Token') ? 'Token: ' . substr($this->ReadAttributeString('Token'), 0, 16) . '...' : $this->Translate('Token: Not registered yet');
+        $data->elements[1]->caption = $this->ReadAttributeString('Token') ? 'Token: ' . substr($this->ReadAttributeString('Token'), 0, 16) . '...' : $this->Translate('Token: Not registered yet');
         return json_encode($data);
     }
 
@@ -57,19 +54,9 @@ class TeslaCloud extends IPSModuleStrict
      */
     public function Register(): string
     {
-        if (!$this->ReadPropertyString("ClientID") || !$this->ReadPropertyString("ClientSecret")) {
-            echo $this->Translate('Please register a new app with Tesla to get a ClientID/ClientSecret!');
-            return "";
-        }
 
         //Return everything which will open the browser
-        $query = http_build_query([
-            'username' => IPS_GetLicensee(),
-            'scope' => 'openid offline_access energy_device_data energy_cmds',
-            'clientid' => $this->ReadPropertyString("ClientID"),
-            'clientsecret' => $this->ReadPropertyString("ClientSecret"),
-        ]);
-        return 'https://' . $this->oauthServer . '/authorize/' . $this->oauthIdentifier . '?' . $query;
+        return 'https://' . $this->oauthServer . '/authorize/' . $this->oauthIdentifer . '?username=' . urlencode(IPS_GetLicensee());
 
     }
 
@@ -113,11 +100,6 @@ class TeslaCloud extends IPSModuleStrict
 
         $this->SendDebug('FetchRefreshToken', 'Use Authentication Code to get our precious Refresh Token!', 0);
 
-        $query = http_build_query([
-            'clientid' => $this->ReadPropertyString("ClientID"),
-            'clientsecret' => $this->ReadPropertyString("ClientSecret"),
-        ]);
-
         //Exchange our Authentication Code for a permanent Refresh Token and a temporary Access Token
         $options = [
             'http' => [
@@ -128,7 +110,7 @@ class TeslaCloud extends IPSModuleStrict
             ]
         ];
         $context = stream_context_create($options);
-        $result = file_get_contents('https://' . $this->oauthServer . '/access_token/' . $this->oauthIdentifier . "?" . $query, false, $context);
+        $result = file_get_contents('https://' . $this->oauthServer . '/access_token/' . $this->oauthIdentifer, false, $context);
 
         $data = json_decode($result);
 
@@ -161,11 +143,6 @@ class TeslaCloud extends IPSModuleStrict
 
             $this->SendDebug('FetchAccessToken', 'Use Refresh Token to get new Access Token!', 0);
 
-            $query = http_build_query([
-                'clientid' => $this->ReadPropertyString("ClientID"),
-                'clientsecret' => $this->ReadPropertyString("ClientSecret"),
-            ]);
-
             //If we slipped here we need to fetch the access token
             $options = [
                 'http' => [
@@ -176,7 +153,7 @@ class TeslaCloud extends IPSModuleStrict
                 ]
             ];
             $context = stream_context_create($options);
-            $result = file_get_contents('https://' . $this->oauthServer . '/access_token/' . $this->oauthIdentifier . "?" . $query, false, $context);
+            $result = file_get_contents('https://' . $this->oauthServer . '/access_token/' . $this->oauthIdentifer, false, $context);
 
             $data = json_decode($result);
 

@@ -1,18 +1,6 @@
 {
     "elements": [
         {
-            "type": "ValidationTextBox",
-            "name": "ClientID",
-            "caption": "ClientID"
-        },
-        {
-            "type": "PasswordTextBox",
-            "name": "ClientSecret",
-            "caption": "ClientSecret"
-        }
-    ],
-    "actions": [
-        {
             "type": "Button",
             "label": "Register",
             "onClick": "echo TESLA_Register($id);"
