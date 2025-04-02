@@ -29,6 +29,11 @@ class TeslaConfigurator extends IPSModuleStrict
             foreach ($products as $product) {
                 $this->SendDebug('Products', json_encode($product), 0);
 
+                // We need to skip over other products like cars
+                if ($product->device_type != "energy") {
+                    continue;
+                }
+
                 $instanceID = $this->searchDevice($product->energy_site_id);
                 $physicalChildren = array_diff($physicalChildren, [$instanceID]);
 
