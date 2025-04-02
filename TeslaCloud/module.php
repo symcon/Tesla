@@ -35,11 +35,13 @@ class TeslaCloud extends IPSModuleStrict
         $data = json_decode($data);
         if (strlen($data->Payload) > 0) {
             $this->SendDebug('ForwardData', $data->Endpoint . ', Payload: ' . $data->Payload, 0);
-            return $this->PostData($this->MakeURL($data->Endpoint), $data->Payload);
+            $result = $this->PostData($this->MakeURL($data->Endpoint), $data->Payload);
         } else {
             $this->SendDebug('ForwardData', $data->Endpoint, 0);
-            return $this->GetData($this->MakeURL($data->Endpoint));
+            $result = $this->GetData($this->MakeURL($data->Endpoint));
         }
+        $this->SendDebug('Result', $result, 0);
+        return $result;
     }
 
     public function GetConfigurationForm(): string
