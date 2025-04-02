@@ -17,6 +17,6 @@ class TeslaValidationTest extends TestCaseSymconValidation
         $this->validateModule(__DIR__ . '/../TeslaConfigurator');
     }    public function testValidateTeslaSystem(): void
     {
-        $this->validateModule(__DIR__ . '/../TeslaSystem');
+        $this->validateModule(__DIR__ . '/../TeslaEnergySite');
     }
 }
