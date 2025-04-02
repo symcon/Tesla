@@ -4,12 +4,12 @@ declare(strict_types=1);
 class TeslaEnergySite extends IPSModuleStrict
 {
     private const KEY_PROFILE_MAP = [
-    'solar_power' => '~Watt',
-    'percentage_charged' => 'Tesla.Percent',
-    'battery_power' => '~Watt',
-    'load_power' => '~Watt',
-    'grid_power' => '~Watt',
-    'generator_power' => '~Watt',
+        'solar_power'        => '~Watt',
+        'percentage_charged' => 'Tesla.Percent',
+        'battery_power'      => '~Watt',
+        'load_power'         => '~Watt',
+        'grid_power'         => '~Watt',
+        'generator_power'    => '~Watt',
     ];
 
     public function Create(): void
@@ -46,25 +46,14 @@ class TeslaEnergySite extends IPSModuleStrict
         }
     }
 
-
-
-    private function KeyToName($key)
-    {
-        $parts = explode('_', $key);
-        foreach ($parts as &$part) {
-            $part = ucfirst($part);
-        }
-        return implode(' ', $parts);
-    }
-
     public function UpdateValues(): void
     {
-        if (!$this->ReadPropertyString("ESID")) {
+        if (!$this->ReadPropertyString('ESID')) {
             return;
         }
         $response = json_decode($this->SendDataToParent(json_encode([
             'DataID'   => '{FB4ED52F-A162-6F23-E7EA-2CBAAF48E662}',
-            'Endpoint' => '/api/1/energy_sites/' . $this->ReadPropertyString("ESID") . "/live_status",
+            'Endpoint' => '/api/1/energy_sites/' . $this->ReadPropertyString('ESID') . '/live_status',
             'Payload'  => ''
         ])));
         $this->SendDebug('live_status', json_encode($response), 0);
@@ -73,20 +62,29 @@ class TeslaEnergySite extends IPSModuleStrict
         foreach ($response->response as $key => $value) {
             $profile = self::KEY_PROFILE_MAP[$key] ?? '';
             switch (gettype($value)) {
-                case "boolean":
+                case 'boolean':
                     $this->RegisterVariableBoolean($key, $this->KeyToName($key), $profile, $position++);
                     $this->SetValue($key, $value);
                     break;
-                case "integer":
-                case "double":
+                case 'integer':
+                case 'double':
                     $this->RegisterVariableFloat($key, $this->KeyToName($key), $profile, $position++);
                     $this->SetValue($key, $value);
                     break;
-                case "string":
+                case 'string':
                     $this->RegisterVariableString($key, $this->KeyToName($key), $profile, $position++);
                     $this->SetValue($key, $value);
                     break;
             }
         }
+    }
+
+    private function KeyToName($key)
+    {
+        $parts = explode('_', $key);
+        foreach ($parts as &$part) {
+            $part = ucfirst($part);
+        }
+        return implode(' ', $parts);
     }
 }

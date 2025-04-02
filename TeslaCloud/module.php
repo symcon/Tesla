@@ -94,7 +94,7 @@ class TeslaCloud extends IPSModuleStrict
 
     private function MakeURL($endpoint)
     {
-        return "https://oauth.ipmagic.de/proxy/tesla" . $endpoint;
+        return 'https://oauth.ipmagic.de/proxy/tesla' . $endpoint;
     }
 
     private function FetchRefreshToken($code): string

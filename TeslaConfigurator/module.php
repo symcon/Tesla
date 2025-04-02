@@ -23,14 +23,13 @@ class TeslaConfigurator extends IPSModuleStrict
                 'Payload'  => ''
             ])))->response;
 
-
             $physicalChildren = $this->getPhysicalChildren();
 
             foreach ($products as $product) {
                 $this->SendDebug('Products', json_encode($product), 0);
 
                 // We need to skip over other products like cars
-                if ($product->device_type != "energy") {
+                if ($product->device_type != 'energy') {
                     continue;
                 }
 
@@ -39,22 +38,22 @@ class TeslaConfigurator extends IPSModuleStrict
 
                 $components = [];
                 if ($product->components->battery) {
-                    $components[] = $this->Translate("Battery");
+                    $components[] = $this->Translate('Battery');
                 }
                 if ($product->components->solar) {
-                    $components[] = $this->Translate("Solar");
+                    $components[] = $this->Translate('Solar');
                 }
                 if ($product->components->grid) {
-                    $components[] = $this->Translate("Grid");
+                    $components[] = $this->Translate('Grid');
                 }
                 if ($product->components->load_meter) {
-                    $components[] = $this->Translate("Load Meter");
+                    $components[] = $this->Translate('Load Meter');
                 }
 
                 if (empty($components)) {
-                    $components = $this->Translate("None");
+                    $components = $this->Translate('None');
                 } else {
-                    $components = implode(", ", $components);
+                    $components = implode(', ', $components);
                 }
 
                 $data->actions[0]->values[] = [
@@ -64,14 +63,13 @@ class TeslaConfigurator extends IPSModuleStrict
                     'instanceID'        => $instanceID,
                     'create'            => [
                         'moduleID'      => '{4A06DAB6-0035-498A-C905-C3AD5C8644CB}',
-                        'name' => $product->site_name,
+                        'name'          => $product->site_name,
                         'configuration' => [
                             'ESID' => $product->energy_site_id
                         ]
                     ],
                 ];
             }
-
 
             foreach ($physicalChildren as $instanceID) {
                 $data->actions[0]->values[] = [
