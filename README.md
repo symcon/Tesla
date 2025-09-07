@@ -6,11 +6,11 @@
 
 Folgende Module beinhaltet das Tesla Repository:
 
-- __TeslaCloud__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla))  
+- __TeslaCloud__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla/))  
     Die Schnittstelle zwischen IP-Symcon und Tesla.
 
-- __TeslaConfigurator__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla))  
+- __TeslaConfigurator__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla/))  
     Der Konfigurator richtet ein Tesla System in IP-Symcon ein.
 
-- __TeslaEnergySite__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla))  
+- __TeslaEnergySite__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/tesla/))  
     Dieses Modul repräsentiert eine Tesla Powerwall in IP-Symcon.
